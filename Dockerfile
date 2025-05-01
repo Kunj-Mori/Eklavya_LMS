@@ -25,12 +25,15 @@ COPY . .
 # Generate Prisma Client
 RUN npx prisma generate
 
+# Build the application
+RUN npm run build
+
 # Expose port 3000
 EXPOSE 3000
 
 # Set environment variables
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
 
-# Start the application in development mode
-CMD ["npm", "run", "dev"]
+# Start the application in production mode
+CMD ["npm", "start"]
