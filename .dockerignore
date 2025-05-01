@@ -32,4 +32,9 @@ README.md
 *.log
 .dockerignore
 Dockerfile
-docker-compose.yml 
+docker-compose.yml
+
+# New additions
+dist
+build
+coverage 
