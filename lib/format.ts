@@ -1,9 +1,16 @@
-export function formatPrice(amount: number): string {
-  const formatter = new Intl.NumberFormat("en-IN", {
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "INR",
-    minimumFractionDigits: 2,
-  });
+  }).format(price);
+};
 
-  return formatter.format(amount);
-}
+export const formatDate = (date: Date | string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+};

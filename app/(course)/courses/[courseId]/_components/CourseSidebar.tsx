@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { CourseProgress } from "@/components/CourseProgress";
+import { Progress } from "@/components/ui/progress";
 
 import { CourseSidebarItem } from "./CourseSidebarItem";
 import Logo from "@/app/(Dashboard)/_components/Logo";
@@ -37,33 +38,32 @@ export const CourseSidebar = async ({
   });
 
   return (
-    <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
-      <div className="p-8 flex flex-col border-b">
-      <div className="mb-4">
-        <Logo />
-      </div>
-        <h1 className="font-semibold capitalize">
+    <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
+      <div className="p-4 flex flex-col border-b">
+        <h2 className="text-lg md:text-xl font-semibold mb-2 line-clamp-2">
           {course.title}
-        </h1>
-        {purchase && (
-          <div className="mt-5">
-            <CourseProgress
-              variant="success"
-              value={progressCount}
-            />
-          </div>
-        )}
+        </h2>
+        <div className="mt-2">
+          <Progress
+            value={progressCount}
+            className="h-2"
+            variant={progressCount === 100 ? "success" : "default"}
+          />
+          <p className="text-xs text-muted-foreground mt-2">
+            {progressCount}% Complete
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex-1">
         {course.chapters.map((chapter) => (
-           <CourseSidebarItem
+          <CourseSidebarItem
             key={chapter.id}
             id={chapter.id}
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!chapter.isFree && !purchase}
-          /> 
+            isLocked={!chapter.isFree}
+          />
         ))}
       </div>
     </div>

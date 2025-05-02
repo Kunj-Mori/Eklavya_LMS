@@ -32,7 +32,7 @@ export default async function Dashboard() {
                   Welcome to your dashboard
                 </h2>
                 <p className="text-slate-600">
-                  This is where you can see your progress and continue your courses. This is a demonstration LMS and as such, all courses are free and Stripe is in test mode. To enroll in a course, enter dummy data in the Stripe form.
+                Eklavya is a full-featured, modern Learning Management System (LMS) designed to streamline online education for students and teachers. Built using the latest web technologies, it offers a dynamic, AI-powered learning experience with robust tools for course creation, enrollment, assessment, and progress tracking.
                 </p>
               </div>
             </div>

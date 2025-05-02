@@ -6,14 +6,8 @@ import { ToasterProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import dynamic from "next/dynamic";
+import { ChatWidgetProvider } from "@/components/providers/ChatWidgetProvider";
 import { Toaster } from "sonner";
-
-// Dynamically import the FloatingChatWidget with no SSR to avoid hydration issues
-const FloatingChatWidget = dynamic(
-  () => import("@/components/ui/chat/FloatingChatWidget"),
-  { ssr: false }
-);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +43,7 @@ export default function RootLayout({
             <ToasterProvider />
             <ConfettiProvider />
             {children}
-            <FloatingChatWidget />
+            <ChatWidgetProvider />
           </ThemeProvider>
           <Script src="https://checkout.razorpay.com/v1/checkout.js" />
         </body>
