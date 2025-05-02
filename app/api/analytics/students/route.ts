@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 
+// Mark this route as dynamic
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   try {
     const { userId } = auth();
