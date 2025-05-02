@@ -69,9 +69,12 @@ export default function AssessmentSessionPage({
   useEffect(() => {
     const fetchAssessmentData = async () => {
       try {
+        // First create or get existing session
+        const sessionResponse = await axios.post(`/api/assessments/${params.assessmentId}/session`);
+        
         const [assessmentResponse, questionsResponse] = await Promise.all([
-          axios.get(`/api/assessments/${params.assessmentId}`),
-          axios.get(`/api/assessments/${params.assessmentId}/questions`)
+          axios.get(`/api/assessments/published/${params.assessmentId}`),
+          axios.get(`/api/assessments/published/${params.assessmentId}/questions`)
         ]);
 
         setAssessment(assessmentResponse.data);
@@ -88,7 +91,7 @@ export default function AssessmentSessionPage({
       } catch (error) {
         console.error("Error fetching assessment data:", error);
         toast.error("Failed to load assessment");
-        router.push("/teacher/assessments");
+        router.push("/examination");
       }
     };
 
